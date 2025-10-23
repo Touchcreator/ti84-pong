@@ -5,12 +5,12 @@
 void ballUpdate(Ball* ball)
 {
     // check iuf touch edge
-    if (ball->y >= GFX_LCD_HEIGHT - ball->radius || ball->y <= ball->radius)
+    if (ball->y >= GFX_LCD_HEIGHT - ball->radius - BORDER || ball->y <= ball->radius + BORDER)
     {
         ball->ySpeed *= -1;
     }
 
-    if (ball->x >= GFX_LCD_WIDTH - ball->radius || ball->x <= ball->radius)
+    if (ball->x >= GFX_LCD_WIDTH - ball->radius - BORDER || ball->x <= ball->radius + BORDER)
     {
         ball->xSpeed *= -1;
     }

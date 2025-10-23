@@ -5,6 +5,8 @@
 #include <time.h>
 #include <graphx.h>
 
+#include "defines.h"
+
 typedef struct
 {
     uint16_t x;

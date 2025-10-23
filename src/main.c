@@ -6,6 +6,7 @@
 
 #include "defines.h"
 #include "ball.h"
+#include "paddle.h"
 
 void draw(void);
 void update(void);
@@ -13,8 +14,27 @@ void update(void);
 uint8_t key;
 
 // setting up entities or sum
-Ball ball = {GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT / 2, 5, 5, 6};
+Ball ball = {GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT / 2, BALL_SPEED, BALL_SPEED, BALL_RADIUS};
 
+Paddle enemy = {
+    20,
+    GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2,
+    5,
+    5,
+    PADDLE_WIDTH,
+    PADDLE_HEIGHT,
+    false
+};
+
+Paddle player = {
+    GFX_LCD_WIDTH - 20 - PADDLE_WIDTH,
+    GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2,
+    5,
+    5,
+    PADDLE_WIDTH,
+    PADDLE_HEIGHT,
+    true
+};
 
 int main(void)
 {
@@ -56,7 +76,6 @@ int main(void)
 
     /* End graphics drawing */
     gfx_End();
-    end();
 
     return 0;
 }
@@ -64,17 +83,35 @@ int main(void)
 void update(void)
 {
     ballUpdate(&ball);
+    paddleUpdate(&player);
+
+    // enemy code (test)
+    if (ball.y - BALL_RADIUS < enemy.y)
+    {
+        paddleMove(&enemy, 'u');
+    }
+    else if (ball.y + BALL_RADIUS > enemy.y + PADDLE_HEIGHT)
+    {
+        paddleMove(&enemy, 'd');
+    }
+    else
+    {
+        paddleMove(&enemy, 'n');
+    }
 }
 
 /* Implement me! */
 void draw(void)
 {
-    gfx_FillScreen(255); // clear screen
-    gfx_SetColor(18); // random color
+    gfx_FillScreen(0); // clear screen
+    gfx_SetColor(255); // random color
+
+    gfx_Line_NoClip(GFX_LCD_WIDTH / 2, 0, GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT);
 
 
     ballDraw(&ball);
-    gfx_FillRectangle(20, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
-    gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
+    paddleDraw(&player);
+    paddleDraw(&enemy);
+    // gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
 
 }

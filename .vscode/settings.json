@@ -1,7 +1,9 @@
 {
     "files.associations": {
         "graphx.h": "c",
-        "util.h": "c"
+        "util.h": "c",
+        "paddle.h": "c",
+        "keypadc.h": "c"
     },
     "makefile.makePath": "C:\\CEdev\\bin\\make.exe",
     "makefile.makefilePath": "C:\\CEdev\\meta\\makefile.mk"
