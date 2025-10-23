@@ -1,17 +1,23 @@
+#include <ti/getcsc.h>
+#include <ti/getkey.h>
+#include <sys/util.h>
+#include <time.h>
 #include <graphx.h>
 
-void begin(void);
-void end(void);
-bool step(void);
+#include "defines.h"
+#include "ball.h"
+
 void draw(void);
+void update(void);
+
+uint8_t key;
+
+// setting up entities or sum
+Ball ball = {GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT / 2, 5, 5, 6};
+
 
 int main(void)
 {
-    bool partial_redraw = false;
-
-    /* No rendering allowed! */
-    begin();
-
     /* Initialize graphics drawing */
     gfx_Begin();
 
@@ -19,20 +25,33 @@ int main(void)
     gfx_SetDrawBuffer();
 
     /* No rendering allowed in step! */
-    while (step())
+    while ((key = os_GetCSC()) != sk_2nd)
     {
-        /* Only want to redraw part of the previous frame? */
-        if (partial_redraw)
-        {
-            /* Copy previous frame as a base for this frame */
-            gfx_BlitScreen();
-        }
+        clock_t frame_start = clock(); // start of loop thing
 
-        /* As little non-rendering logic as possible */
+        update();
         draw();
 
         /* Queue the buffered frame to be displayed */
         gfx_SwapDraw();
+
+        /* Get how much time has elapsed since the start of the frame. */
+        clock_t frame_time = clock() - frame_start;
+
+        if (frame_time > TARGET_FRAME_TIME) {
+            //pass
+        }
+
+        /* Wait for at least TARGET_FRAME_TIME to have passed since
+           the start of the frame. */
+        do {
+            frame_time = clock() - frame_start;
+        } while (frame_time < TARGET_FRAME_TIME);
+
+        /* Note that there should not be any code below the above loop,
+           since it would not be counted towards the frame time. */
+
+
     }
 
     /* End graphics drawing */
@@ -42,26 +61,20 @@ int main(void)
     return 0;
 }
 
-/* Implement me! */
-void begin(void)
+void update(void)
 {
-
-}
-
-/* Implement me! */
-void end(void)
-{
-
-}
-
-/* Implement me! */
-bool step(void)
-{
-    return false;
+    ballUpdate(&ball);
 }
 
 /* Implement me! */
 void draw(void)
 {
+    gfx_FillScreen(255); // clear screen
+    gfx_SetColor(18); // random color
+
+
+    ballDraw(&ball);
+    gfx_FillRectangle(20, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
+    gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
 
 }

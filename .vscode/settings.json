@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "graphx.h": "c"
-    }
+        "graphx.h": "c",
+        "util.h": "c"
+    },
+    "makefile.makePath": "C:\\CEdev\\bin\\make.exe",
+    "makefile.makefilePath": "C:\\CEdev\\meta\\makefile.mk"
 }
