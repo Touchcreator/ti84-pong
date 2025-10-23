@@ -2,11 +2,11 @@
 # Makefile Options
 # ----------------------------
 
-NAME = DEMO
+NAME = PONG
 ICON = icon.png
-DESCRIPTION = "CE C Toolchain Demo"
+DESCRIPTION = "Pong for TI-84 by Touchcreator"
 COMPRESSED = NO
-ARCHIVED = NO
+# ARCHIVED = NO
 
 CFLAGS = -Wall -Wextra -Oz
 CXXFLAGS = -Wall -Wextra -Oz
