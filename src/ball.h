@@ -1,12 +1,6 @@
 #ifndef __BALL_H__
 #define __BALL_H__
 
-#include <sys/util.h>
-#include <time.h>
-#include <graphx.h>
-
-#include "defines.h"
-
 typedef struct
 {
     uint16_t x;

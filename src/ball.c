@@ -1,5 +1,7 @@
 #include <graphx.h>
 
+#include "defines.h"
+
 #include "ball.h"
 
 void ballUpdate(Ball* ball)

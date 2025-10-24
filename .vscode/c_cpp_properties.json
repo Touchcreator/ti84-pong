@@ -4,9 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\CEdev\\include/**",
-                "C:/CEdev/include/**",
-                "C:/CEdev/include"
+                "${env:CEDEV}/include/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,7 +12,7 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.22621.0",
-            "compilerPath": "C:\\CEdev\\bin\\ez80-clang.exe",
+            "compilerPath": "${env:CEDEV}/bin/ez80-clang.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "clang-x86"

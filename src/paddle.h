@@ -1,11 +1,7 @@
 #ifndef __PADDLE_H__
 #define __PADDLE_H__
 
-#include <sys/util.h>
-#include <keypadc.h>
-#include <graphx.h>
-
-#include "defines.h"
+#include <stdlib.h>
 
 typedef struct
 {

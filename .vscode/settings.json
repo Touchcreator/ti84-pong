@@ -3,7 +3,13 @@
         "graphx.h": "c",
         "util.h": "c",
         "paddle.h": "c",
-        "keypadc.h": "c"
+        "keypadc.h": "c",
+        "defines.h": "c",
+        "ball.h": "c",
+        "getkey.h": "c",
+        "getcsc.h": "c",
+        "stdlib.h": "c",
+        "cdefs.h": "c"
     },
     "makefile.makePath": "C:\\CEdev\\bin\\make.exe",
     "makefile.makefilePath": "C:\\CEdev\\meta\\makefile.mk"

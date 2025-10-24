@@ -1,3 +1,8 @@
+#include <graphx.h>
+#include <keypadc.h>
+
+#include "defines.h"
+
 #include "paddle.h"
 
 void paddleDraw(Paddle* paddle)

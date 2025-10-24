@@ -7,6 +7,7 @@
 #include "defines.h"
 #include "ball.h"
 #include "paddle.h"
+#include "text.h"
 
 void draw(void);
 void update(void);
@@ -105,6 +106,7 @@ void draw(void)
 {
     gfx_FillScreen(0); // clear screen
     gfx_SetColor(255); // random color
+    
 
     gfx_Line_NoClip(GFX_LCD_WIDTH / 2, 0, GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT);
 
@@ -113,5 +115,7 @@ void draw(void)
     paddleDraw(&player);
     paddleDraw(&enemy);
     // gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
+
+    printScore(6, 7);
 
 }
