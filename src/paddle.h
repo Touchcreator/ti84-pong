@@ -27,6 +27,6 @@ void paddleDraw(Paddle* paddle);
 
 void paddleUpdate(Paddle* paddle);
 
-void paddleMove(Paddle* paddle, char direction);
+void paddleMove(Paddle* paddle, Direction direction);
 
 #endif // __PADDLE_H__
