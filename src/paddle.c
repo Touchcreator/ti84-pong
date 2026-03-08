@@ -17,7 +17,7 @@ void paddleUpdate(Paddle* paddle)
 
 }
 
-void paddleMove(Paddle* paddle, Direction dir)
+void paddleMove(Paddle* paddle, Direction direction)
 {
     kb_Scan();
     kb_key_t playerKey = kb_Data[7];
