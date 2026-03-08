@@ -9,7 +9,7 @@ COMPRESSED = NO
 # ARCHIVED = NO
 HAS_PRINTF = NO
 
-CFLAGS = -Wall -Wextra -Oz
+CFLAGS = -Wall -Wextra -Oz -Werror
 CXXFLAGS = -Wall -Wextra -Oz
 
 # ----------------------------

@@ -1,8 +1,12 @@
 #include <graphx.h>
 
 #include "defines.h"
+#include "paddle.h"
 
 #include "ball.h"
+
+extern Paddle player;
+extern Paddle enemy;
 
 void ballUpdate(Ball* ball)
 {
@@ -20,7 +24,7 @@ void ballUpdate(Ball* ball)
 
     ball->x += ball->xSpeed;
     ball->y += ball->ySpeed;
-
+    
 }
     
 
