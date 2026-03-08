@@ -89,15 +89,15 @@ void update(void)
     // enemy code (test)
     if (ball.y - BALL_RADIUS < enemy.y)
     {
-        paddleMove(&enemy, 'u');
+        paddleMove(&enemy, UP);
     }
     else if (ball.y + BALL_RADIUS > enemy.y + PADDLE_HEIGHT)
     {
-        paddleMove(&enemy, 'd');
+        paddleMove(&enemy, DOWN);
     }
     else
     {
-        paddleMove(&enemy, 'n');
+        paddleMove(&enemy, DOWN);
     }
 }
 

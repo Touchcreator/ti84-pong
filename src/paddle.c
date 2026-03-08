@@ -13,11 +13,11 @@ void paddleDraw(Paddle* paddle)
 void paddleUpdate(Paddle* paddle)
 {
 
-    paddleMove(paddle, 'n');
+    paddleMove(paddle, NONE);
 
 }
 
-void paddleMove(Paddle* paddle, char direction)
+void paddleMove(Paddle* paddle, Direction dir)
 {
     kb_Scan();
     kb_key_t playerKey = kb_Data[7];
@@ -36,11 +36,11 @@ void paddleMove(Paddle* paddle, char direction)
     }
     else
     {
-        if (direction == 'u')
+        if (direction == UP)
         {
             paddle->y -= paddle->ySpeed;
         }
-        else if (direction == 'd')
+        else if (direction == DOWN)
         {
             paddle->y += paddle->ySpeed;
         }
