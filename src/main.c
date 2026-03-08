@@ -15,26 +15,32 @@ void update(void);
 uint8_t key;
 
 // setting up entities or sum
-Ball ball = {GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT / 2, BALL_SPEED, BALL_SPEED, BALL_RADIUS};
+Ball ball = {
+    .x = GFX_LCD_WIDTH / 2,
+    .y = GFX_LCD_HEIGHT / 2, 
+    .xSpeed = BALL_SPEED, 
+    .ySpeed = BALL_SPEED, 
+    .radius = BALL_RADIUS
+};
 
 Paddle enemy = {
-    20,
-    GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2,
-    5,
-    5,
-    PADDLE_WIDTH,
-    PADDLE_HEIGHT,
-    false
+    .x = 20,
+    .y = GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2, // center
+    .xSpeed = 5,
+    .ySpeed = 5,
+    .width = PADDLE_WIDTH,
+    .height = PADDLE_HEIGHT,
+    .isPlayer = false
 };
 
 Paddle player = {
-    GFX_LCD_WIDTH - 20 - PADDLE_WIDTH,
-    GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2,
-    5,
-    5,
-    PADDLE_WIDTH,
-    PADDLE_HEIGHT,
-    true
+    .x = GFX_LCD_WIDTH - 20 - PADDLE_WIDTH,
+    .y = GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2, // center
+    .xSpeed = 5,
+    .ySpeed = 5,
+    .width = PADDLE_WIDTH,
+    .height = PADDLE_HEIGHT,
+    .isPlayer = true
 };
 
 int main(void)
