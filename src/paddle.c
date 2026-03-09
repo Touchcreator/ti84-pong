@@ -5,19 +5,19 @@
 
 #include "paddle.h"
 
-void paddleDraw(Paddle* paddle)
+void paddle_Draw(Paddle* paddle)
 {
     gfx_FillRectangle_NoClip(paddle->x, paddle->y, paddle->width, paddle->height);
 }
 
-void paddleUpdate(Paddle* paddle)
+void paddle_Update(Paddle* paddle)
 {
 
-    paddleMove(paddle, NONE);
+    paddle_Move(paddle, NONE);
 
 }
 
-void paddleMove(Paddle* paddle, Direction direction)
+void paddle_Move(Paddle* paddle, Direction direction)
 {
     kb_Scan();
     kb_key_t playerKey = kb_Data[7];

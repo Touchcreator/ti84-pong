@@ -12,8 +12,8 @@ typedef struct
     uint8_t radius;
 } Ball;
 
-void ballUpdate(Ball* ball);
+void ball_Update(Ball* ball);
 
-void ballDraw(Ball* ball);
+void ball_Draw(Ball* ball);
 
 #endif // __BALL_H__

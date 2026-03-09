@@ -89,21 +89,21 @@ int main(void)
 
 void update(void)
 {
-    ballUpdate(&ball);
-    paddleUpdate(&player);
+    ball_Update(&ball);
+    paddle_Update(&player);
 
     // enemy code (test)
     if (ball.y - BALL_RADIUS < enemy.y)
     {
-        paddleMove(&enemy, UP);
+        paddle_Move(&enemy, UP);
     }
     else if (ball.y + BALL_RADIUS > enemy.y + PADDLE_HEIGHT)
     {
-        paddleMove(&enemy, DOWN);
+        paddle_Move(&enemy, DOWN);
     }
     else
     {
-        paddleMove(&enemy, DOWN);
+        paddle_Move(&enemy, DOWN);
     }
 }
 
@@ -117,11 +117,11 @@ void draw(void)
     gfx_Line_NoClip(GFX_LCD_WIDTH / 2, 0, GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT);
 
 
-    ballDraw(&ball);
-    paddleDraw(&player);
-    paddleDraw(&enemy);
+    ball_Draw(&ball);
+    paddle_Draw(&player);
+    paddle_Draw(&enemy);
     // gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
 
-    printScore(6, 7);
+    printScore(0, 0);
 
 }

@@ -8,7 +8,7 @@
 extern Paddle player;
 extern Paddle enemy;
 
-void ballUpdate(Ball* ball)
+void ball_Update(Ball* ball)
 {
     // check iuf touch edge
     if (ball->y >= GFX_LCD_HEIGHT - ball->radius - BORDER || ball->y <= ball->radius + BORDER)
@@ -21,6 +21,8 @@ void ballUpdate(Ball* ball)
         ball->xSpeed *= -1;
     }
 
+    // check if touching any paddles
+
 
     ball->x += ball->xSpeed;
     ball->y += ball->ySpeed;
@@ -28,7 +30,7 @@ void ballUpdate(Ball* ball)
 }
     
 
-void ballDraw(Ball* ball)
+void ball_Draw(Ball* ball)
 {
     gfx_FillCircle(ball->x, ball->y, ball->radius);
 }
