@@ -17,8 +17,8 @@ uint8_t key;
 
 // setting up entities or sum
 Ball ball = {
-    .x = GFX_LCD_WIDTH / 2,
-    .y = GFX_LCD_HEIGHT / 2, 
+    .x = SCREEN_CENTER_X,
+    .y = SCREEN_CENTER_Y, 
     .xSpeed = BALL_SPEED, 
     .ySpeed = BALL_SPEED, 
     .radius = BALL_RADIUS
@@ -26,7 +26,7 @@ Ball ball = {
 
 Paddle enemy = {
     .x = 20,
-    .y = GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2, // center
+    .y = SCREEN_CENTER_Y - PADDLE_WIDTH / 2, // center
     .xSpeed = 5,
     .ySpeed = 5,
     .width = PADDLE_WIDTH,
@@ -36,7 +36,7 @@ Paddle enemy = {
 
 Paddle player = {
     .x = GFX_LCD_WIDTH - 20 - PADDLE_WIDTH,
-    .y = GFX_LCD_HEIGHT / 2 - PADDLE_WIDTH / 2, // center
+    .y = SCREEN_CENTER_Y - PADDLE_WIDTH / 2, // center
     .xSpeed = 5,
     .ySpeed = 5,
     .width = PADDLE_WIDTH,
@@ -120,13 +120,13 @@ void draw(void)
     gfx_SetColor(255); // random color
     
 
-    gfx_Line_NoClip(GFX_LCD_WIDTH / 2, 0, GFX_LCD_WIDTH / 2, GFX_LCD_HEIGHT);
+    gfx_Line_NoClip(SCREEN_CENTER_X, 0, SCREEN_CENTER_X, GFX_LCD_HEIGHT);
 
 
     ball_Draw(&ball);
     paddle_Draw(&player);
     paddle_Draw(&enemy);
-    // gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
+    // gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, SCREEN_CENTER_Y - PADDLE_HEIGHT / 2, 20, 50);
 
     printScore(&gameScore);
 

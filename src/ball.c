@@ -16,11 +16,12 @@ void ball_Update(Ball* ball)
     {
         ball->ySpeed *= -1;
     }
-
+    /*
     if (ball->x >= GFX_LCD_WIDTH - ball->radius - BORDER || ball->x <= ball->radius + BORDER)
     {
         ball->xSpeed *= -1;
     }
+    */
 
     
 
@@ -30,6 +31,13 @@ void ball_Update(Ball* ball)
     // check if touching any paddles and deflect
     ball_DeflectPaddle(ball, &enemy);
     ball_DeflectPaddle(ball, &player);
+
+    // reset ball to center (testing)
+    if (abs(ball->x + ball->radius - SCREEN_CENTER_X) >= GFX_LCD_WIDTH - SCREEN_CENTER_X - BORDER)
+    {
+        ball->x = SCREEN_CENTER_X;
+        ball->y = SCREEN_CENTER_Y;
+    }
     
 }
     
