@@ -3,6 +3,8 @@
 
 #include <sys/util.h>
 
-void printScore(uint8_t left, uint8_t right);
+#include "score.h"
+
+void printScore(Score *scoreData);
 
 #endif // __TEXT_H__

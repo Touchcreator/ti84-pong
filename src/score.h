@@ -1,12 +1,16 @@
 #ifndef __SCORE_H__
 #define __SCORE_H__
 
+#include <stdint.h>
+
 typedef struct
 {
-    unsigned int enemyScore = 0;
-    unsigned int playerScore = 0;
+    uint8_t enemyScore;
+    uint8_t playerScore;
 } Score;
 
-void score_EnemyScore(Score *scoreData);
+void score_EnemyGoal(Score *scoreData);
+
+void score_PlayerGoal(Score *scoreData);
 
 #endif // __SCORE_H__

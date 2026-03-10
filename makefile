@@ -9,8 +9,17 @@ COMPRESSED = NO
 # ARCHIVED = NO
 HAS_PRINTF = NO
 
-CFLAGS = -Wall -Wextra -Oz -Werror
+RELEASE_MODE = DEBUG
+
+CFLAGS = -Wall -Wextra
 CXXFLAGS = -Wall -Wextra -Oz
+
+CFLAGS += -Werror
+ifeq ($(RELEASE_MODE),DEBUG)
+	CFLAGS += -Werror -O0 -Oz
+else
+	CFLAGS += -Werror -Os
+endif
 
 # ----------------------------
 

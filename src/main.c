@@ -8,6 +8,7 @@
 #include "ball.h"
 #include "paddle.h"
 #include "text.h"
+#include "score.h"
 
 void draw(void);
 void update(void);
@@ -41,6 +42,11 @@ Paddle player = {
     .width = PADDLE_WIDTH,
     .height = PADDLE_HEIGHT,
     .isPlayer = true
+};
+
+Score gameScore = {
+    .enemyScore = 3,
+    .playerScore = 2
 };
 
 int main(void)
@@ -122,6 +128,6 @@ void draw(void)
     paddle_Draw(&enemy);
     // gfx_FillRectangle(GFX_LCD_WIDTH - 20 - PADDLE_WIDTH, GFX_LCD_HEIGHT / 2 - PADDLE_HEIGHT / 2, 20, 50);
 
-    printScore(0, 0);
+    printScore(&gameScore);
 
 }

@@ -1,7 +1,10 @@
 #ifndef __PADDLE_H__
 #define __PADDLE_H__
 
-#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+#include "collision.h"
 
 typedef struct
 {
@@ -29,5 +32,7 @@ void paddle_Draw(Paddle *paddle);
 void paddle_Update(Paddle *paddle);
 
 void paddle_Move(Paddle *paddle, Direction direction);
+
+CollisionRectangle paddle_GetCollisionBox(Paddle *paddle);
 
 #endif // __PADDLE_H__

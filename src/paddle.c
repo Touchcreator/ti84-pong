@@ -59,3 +59,16 @@ void paddle_Move(Paddle* paddle, Direction direction)
         paddle->y = GFX_LCD_HEIGHT - paddle->height - BORDER;
     }
 }
+
+CollisionRectangle paddle_GetCollisionBox(Paddle *paddle)
+{
+    CollisionRectangle colRect = {
+        .x = paddle->x,
+        .y = paddle->y,
+
+        .width = paddle->width,
+        .height = paddle->height
+    };
+    
+    return colRect;
+}

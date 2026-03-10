@@ -2,26 +2,30 @@
 #include <graphx.h>
 #include <fontlibc.h>
 
+#include "score.h"
+
 #include "text.h"
 
-void printScore(uint8_t left, uint8_t right)
+const uint8_t stringX = 10;
+const uint8_t stringY = 10; // first quarter of screen 
+
+void printScore(Score *scoreData)
 {
+    // setting up old left and right variables
+    uint8_t left = scoreData->enemyScore;
+    uint8_t right = scoreData->playerScore;
+
     // text colors
-    gfx_SetTextFGColor(255);
+    gfx_SetTextFGColor(222);
     gfx_SetTextBGColor(67);
     gfx_SetTextTransparentColor(67);
 
     // join the two (oh boy...)
-    char string[5];
+    char string[6];
     boot_snprintf(string, 6, "%d - %d", left, right);
 
     // set scale
-    gfx_SetTextScale(3, 3);
-    unsigned int fullStringWidth = fontlib_GetStringWidth(string);
-    unsigned int widthLeftOffset = fullStringWidth / 2;
-    // unsigned int leftOffset = 40; // a random offset, hopefully it works well
+    gfx_SetTextScale(2, 2);
 
-    unsigned int stringX = GFX_LCD_WIDTH / 2 - widthLeftOffset;
-    unsigned int stringY = GFX_LCD_HEIGHT / 4; // first quarter of screen 
     gfx_PrintStringXY(string, stringX, stringY);
 }

@@ -2,6 +2,7 @@
 
 #include "defines.h"
 #include "paddle.h"
+#include "collision.h"
 
 #include "ball.h"
 
@@ -21,11 +22,14 @@ void ball_Update(Ball* ball)
         ball->xSpeed *= -1;
     }
 
-    // check if touching any paddles
-
+    
 
     ball->x += ball->xSpeed;
     ball->y += ball->ySpeed;
+
+    // check if touching any paddles and deflect
+    ball_DeflectPaddle(ball, &enemy);
+    ball_DeflectPaddle(ball, &player);
     
 }
     
@@ -33,4 +37,31 @@ void ball_Update(Ball* ball)
 void ball_Draw(Ball* ball)
 {
     gfx_FillCircle(ball->x, ball->y, ball->radius);
+}
+
+// TODO: add better deflection code
+// Checks if ball is colliding with the chosen paddle. If so, deflect the paddle
+void ball_DeflectPaddle(Ball *ball, Paddle *paddle)
+{
+    CollisionRectangle ballRect = ball_GetCollisionBox(ball);
+    CollisionRectangle paddleRect = paddle_GetCollisionBox(paddle);
+
+    if (areColliding(&ballRect, &paddleRect))
+    {
+        ball->xSpeed *= -1;
+        ball->ySpeed *= -1;
+    }
+}
+
+CollisionRectangle ball_GetCollisionBox(Ball *ball)
+{
+    CollisionRectangle colRect = {
+        .x = ball->x - ball->radius,
+        .y = ball->y - ball->radius,
+
+        .width = ball->radius * 2,
+        .height = ball->radius * 2
+    };
+
+    return colRect;
 }
