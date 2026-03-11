@@ -15,15 +15,7 @@ void ball_Update(Ball* ball)
     if (ball->y >= GFX_LCD_HEIGHT - ball->radius - BORDER || ball->y <= ball->radius + BORDER)
     {
         ball->ySpeed *= -1;
-    }
-    /*
-    if (ball->x >= GFX_LCD_WIDTH - ball->radius - BORDER || ball->x <= ball->radius + BORDER)
-    {
-        ball->xSpeed *= -1;
-    }
-    */
-
-    
+    } 
 
     ball->x += ball->xSpeed;
     ball->y += ball->ySpeed;
@@ -33,10 +25,18 @@ void ball_Update(Ball* ball)
     ball_DeflectPaddle(ball, &player);
 
     // reset ball to center (testing)
-    if (abs(ball->x + ball->radius - SCREEN_CENTER_X) >= GFX_LCD_WIDTH - SCREEN_CENTER_X - BORDER)
+    if (fabsf(ball->x + ball->radius - SCREEN_CENTER_X) >= GFX_LCD_WIDTH - SCREEN_CENTER_X - BORDER)
     {
         ball->x = SCREEN_CENTER_X;
         ball->y = SCREEN_CENTER_Y;
+
+        float originalXSpeed = ball->xSpeed;
+        ball->direction = 0;
+        ball_CalculateAngle(ball);
+        if (originalXSpeed < 0)
+        {
+            ball->xSpeed *= -1;
+        }
     }
     
 }
@@ -44,7 +44,7 @@ void ball_Update(Ball* ball)
 
 void ball_Draw(Ball* ball)
 {
-    gfx_FillCircle(ball->x, ball->y, ball->radius);
+    gfx_FillCircle((int)ball->x, (int)ball->y, ball->radius);
 }
 
 // TODO: add better deflection code
@@ -56,8 +56,15 @@ void ball_DeflectPaddle(Ball *ball, Paddle *paddle)
 
     if (areColliding(&ballRect, &paddleRect))
     {
-        ball->xSpeed *= -1;
-        ball->ySpeed *= -1;
+        float distance = colRect_GetCenterY(&paddleRect) - colRect_GetCenterY(&ballRect);
+        float multiplier = distance / ((ballRect.height / 2.0f) + (paddleRect.height / 2.0f));
+        ball->direction = MAX_BALL_ANGLE * multiplier;
+        ball_CalculateAngle(ball);
+
+        if (paddle == &player) // since the direction will always be calculated to point right, if the checked paddle is the player, switch it
+        {
+            ball->xSpeed *= -1;
+        }
     }
 }
 
@@ -72,4 +79,13 @@ CollisionRectangle ball_GetCollisionBox(Ball *ball)
     };
 
     return colRect;
+}
+
+/**
+ * angle is in radians, not degrees
+ */
+void ball_CalculateAngle(Ball *ball)
+{
+    ball->xSpeed = ball->speed * cos(ball->direction);
+    ball->ySpeed = ball->speed * sin(ball->direction);
 }

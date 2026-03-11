@@ -16,22 +16,36 @@ bool areColliding(CollisionRectangle *rectOne, CollisionRectangle *rectTwo)
     return false;
 }
 
-uint16_t colRect_GetLeftX(CollisionRectangle *rect)
+float colRect_GetLeftX(CollisionRectangle *rect)
 {
     return rect->x;
 }
 
-uint16_t colRect_GetRightX(CollisionRectangle *rect)
+float colRect_GetRightX(CollisionRectangle *rect)
 {
     return rect->x + rect->width;
 }
 
-uint16_t colRect_GetBottomY(CollisionRectangle *rect)
+float colRect_GetBottomY(CollisionRectangle *rect)
 {
     return rect->y + rect->height;
 }
 
-uint16_t colRect_GetTopY(CollisionRectangle *rect)
+float colRect_GetTopY(CollisionRectangle *rect)
 {
     return rect->y;
+}
+
+float colRect_GetCenterX(CollisionRectangle *rect)
+{
+    float width = rect->width;
+
+    return rect->x + width / 2.0f;
+}
+
+float colRect_GetCenterY(CollisionRectangle *rect)
+{
+    float height = rect->height;
+
+    return rect->y + height / 2.0f;
 }

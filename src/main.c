@@ -18,9 +18,9 @@ uint8_t key;
 // setting up entities or sum
 Ball ball = {
     .x = SCREEN_CENTER_X,
-    .y = SCREEN_CENTER_Y, 
-    .xSpeed = BALL_SPEED, 
-    .ySpeed = BALL_SPEED, 
+    .y = SCREEN_CENTER_Y,
+    .speed = BALL_SPEED,
+    .direction = M_PI_4,
     .radius = BALL_RADIUS
 };
 
@@ -49,6 +49,12 @@ Score gameScore = {
     .playerScore = 2
 };
 
+// setup use any functions that cannot be used before declaration of main
+void setup(void)
+{
+    ball_CalculateAngle(&ball);
+}
+
 int main(void)
 {
     /* Initialize graphics drawing */
@@ -56,6 +62,8 @@ int main(void)
 
     /* Draw to the buffer to avoid rendering artifacts */
     gfx_SetDrawBuffer();
+
+    setup();
 
     /* No rendering allowed in step! */
     while ((key = os_GetCSC()) != sk_2nd)
@@ -98,18 +106,23 @@ void update(void)
     ball_Update(&ball);
     paddle_Update(&player);
 
-    // enemy code (test)
-    if (ball.y - BALL_RADIUS < enemy.y)
+    const float enemyNoticeExtremeDirection = M_PI / 5.0f;
+
+    // enemy code
+    if (ball.x < SCREEN_CENTER_X || (fabsf(ball.direction) > enemyNoticeExtremeDirection && ball.x < GFX_LCD_WIDTH * 3 / 4)) // if ball is in enemy territory, easier and more realistic
     {
-        paddle_Move(&enemy, UP);
-    }
-    else if (ball.y + BALL_RADIUS > enemy.y + PADDLE_HEIGHT)
-    {
-        paddle_Move(&enemy, DOWN);
-    }
-    else
-    {
-        paddle_Move(&enemy, DOWN);
+        if (ball.y - (float) BALL_RADIUS < enemy.y)
+        {
+            paddle_Move(&enemy, UP);
+        }
+        else if (ball.y + (float) BALL_RADIUS > enemy.y + (float) PADDLE_HEIGHT)
+        {
+            paddle_Move(&enemy, DOWN);
+        }
+        else
+        {
+            paddle_Move(&enemy, NONE);
+        }
     }
 }
 

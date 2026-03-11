@@ -14,8 +14,8 @@
  */
 typedef struct
 {
-    uint16_t x;
-    uint16_t y;
+    float x;
+    float y;
 
     uint16_t width;
     uint16_t height;
@@ -23,12 +23,16 @@ typedef struct
 
 bool areColliding(CollisionRectangle *rectOne, CollisionRectangle *rectTwo);
 
-uint16_t colRect_GetLeftX(CollisionRectangle *rect);
+float colRect_GetLeftX(CollisionRectangle *rect);
 
-uint16_t colRect_GetRightX(CollisionRectangle *rect);
+float colRect_GetRightX(CollisionRectangle *rect);
 
-uint16_t colRect_GetBottomY(CollisionRectangle *rect);
+float colRect_GetBottomY(CollisionRectangle *rect);
 
-uint16_t colRect_GetTopY(CollisionRectangle *rect);
+float colRect_GetTopY(CollisionRectangle *rect);
+
+float colRect_GetCenterX(CollisionRectangle *rect);
+
+float colRect_GetCenterY(CollisionRectangle *rect);
 
 #endif // __COLLISION_H__

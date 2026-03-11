@@ -16,9 +16,10 @@ CXXFLAGS = -Wall -Wextra -Oz
 
 CFLAGS += -Werror
 ifeq ($(RELEASE_MODE),DEBUG)
-	CFLAGS += -Werror -O0 -Oz
+	CFLAGS += -Werror -O0
 else
-	CFLAGS += -Werror -Os
+	CFLAGS += -Werror -Os -Oz -O3
+	COMPRESSED = YES
 endif
 
 # ----------------------------
